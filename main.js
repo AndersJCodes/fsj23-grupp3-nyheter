@@ -1,24 +1,23 @@
 import './style.css'
-import javascriptLogo from './javascript.svg'
-import viteLogo from '/vite.svg'
-import { setupCounter } from './counter.js'
+import axios from "axios";
 
-document.querySelector('#app').innerHTML = `
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="${viteLogo}" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank">
-      <img src="${javascriptLogo}" class="logo vanilla" alt="JavaScript logo" />
-    </a>
-    <h1>Hello Vite!</h1>
-    <div class="card">
-      <button id="counter" type="button"></button>
-    </div>
-    <p class="read-the-docs">
-      Click on the Vite logo to learn more
-    </p>
-  </div>
-`
+const key =""
 
-setupCounter(document.querySelector('#counter'))
+const exampleurl = `https://newsapi.org/v2/everything?q=javascript&apiKey=${key}`
+
+async function getUser(exampleurl) {
+  try {
+    const response = await axios.get(exampleurl);
+    console.log(response);
+    console.log(response.data.articles[0].description);
+  } catch (error) {
+    console.error(error);
+  }
+}
+getUser(exampleurl);
+
+/* 
+const display = (response) => {
+const titleName = respone.articles[0].title
+} 
+getNews(exampleurl).then(display);*/
