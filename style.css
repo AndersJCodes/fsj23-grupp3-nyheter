@@ -1,0 +1,44 @@
+.articleCard {
+    width: 80%;
+    margin-bottom: 20px;
+}
+
+.coverImg {
+    width: 100%;
+    height: 20rem;
+    background-image: url("testImage.jpg");
+    background-size: cover;
+    background-position: center;
+}
+
+.container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.cardTitle {
+    margin: 10px;
+    font-size: 20px;
+}
+
+.cardHeader {
+    padding: 10px;
+    background-color: #f8f8f8;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+    border: 1px solid lightgray;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.cardBody {
+    border: 1px solid lightgray;
+    padding: 10px;
+}
+
+.marked {
+    align-self: flex-end;
+}
