@@ -2,7 +2,6 @@ import { key } from './configENV';
 import './style.css';
 import axios from "axios";
 
-
 const url = `https://newsapi.org/v2/everything?q=javascript&html&react&CSS&typescript&apiKey=${key.API_KEY_2}`;
 const articleElement = document.querySelector("#article")
 
