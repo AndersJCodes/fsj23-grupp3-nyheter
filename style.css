@@ -1,9 +1,7 @@
 .active{
     font-weight: bold; 
 }
-.pill{
-    border-radius:23px;
-}
+
 .text-nowrap{
     text-wrap: nowrap;
 }
