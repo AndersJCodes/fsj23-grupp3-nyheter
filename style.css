@@ -1,0 +1,11 @@
+.active{
+    font-weight: bold; 
+}
+
+
+@media screen and (min-width: 992px) {
+    nav{
+        border-bottom: 2px solid green; 
+        margin-bottom: 10px;  
+    }
+}
