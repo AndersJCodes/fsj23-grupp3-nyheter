@@ -1,8 +1,8 @@
-import './style.css'
+import { key } from './configApi';
+import './style.css';
 import axios from "axios";
 
-const key = "d75aac48decd4e9c8d02e380452a20ea";
-const url = `https://newsapi.org/v2/everything?q=javascript&html&react&CSS&typescript&apiKey=${key}`;
+const url = `https://newsapi.org/v2/everything?q=javascript&html&react&CSS&typescript&apiKey=${key.API_KEY_2}`;
 const articleElement = document.querySelector("#article")
 
 async function getUser(url) {

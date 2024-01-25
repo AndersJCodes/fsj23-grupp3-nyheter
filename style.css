@@ -64,6 +64,19 @@ body {
     font-weight: bold;
 }
 
+.text-nowrap{
+    text-wrap: nowrap;
+}
+
+.btn-status{
+    border-radius: 30px;
+}
+.btn-status:hover{
+    color: rgb(168, 168, 168);
+}
+.btn-status:active{
+    font-weight: bold;
+}
 
 @media screen and (min-width: 992px) {
     nav {
