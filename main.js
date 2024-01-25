@@ -1,4 +1,4 @@
-import { key } from './configENV';
+import { key } from './configApi';
 import './style.css';
 import axios from "axios";
 
