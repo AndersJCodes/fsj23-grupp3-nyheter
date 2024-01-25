@@ -19,13 +19,11 @@ getUser(url);
 
 function displayArticles(articles) {
   const html = articles.map(article => `
-    <div class="articleCard">
-      
-       ${article.urlToImage ? `<img src="${article.urlToImage}" class="card-img-top" alt="..." />` : ''}
-       <div class="cardHeader">Category
+    <div class="articleCard"> 
+      <div class="cardHeader">Category
         <div class="Marked"><img src="star.png" style="width:20px; height:20px"></div>
       </div>
-      <div class="divider"></div>
+       ${article.urlToImage ? `<img src="${article.urlToImage}" class="card-img-top" alt="..." />` : ''}
         <div class="cardBody">
           <h5 class="cardTitle">${article.title}</h5>
           <p class="cardText">${article.description}</p>
