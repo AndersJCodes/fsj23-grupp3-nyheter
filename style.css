@@ -1,5 +1,5 @@
 .articleCard {
-    width: 70%;
+    width: 100%;
     margin-bottom: 20px;
     box-shadow: 10px 6px rgb(214, 247, 214);
     border-bottom-right-radius: 10px;
@@ -64,23 +64,29 @@ body {
     font-weight: bold;
 }
 
-.text-nowrap{
+.text-nowrap {
     text-wrap: nowrap;
 }
 
-.btn-status{
+.btn-status {
     border-radius: 30px;
 }
-.btn-status:hover{
+
+.btn-status:hover {
     color: rgb(168, 168, 168);
 }
-.btn-status:active{
+
+.btn-status:active {
     font-weight: bold;
 }
 
 @media screen and (min-width: 992px) {
     nav {
         border-bottom: 2px solid green;
-        margin-bottom: 10px;
+
+    }
+
+    .articleCard {
+        width: 70%;
     }
 }
