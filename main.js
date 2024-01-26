@@ -1,6 +1,7 @@
 import { key } from "./configApi";
 import "./style.css";
 import axios from "axios";
+import { listenForFavorites } from "./js_modules/favorites";
 
 //const reactWord = "react.js";
 const searchDefault = "javascript&css";
@@ -23,7 +24,7 @@ function displayArticles(articles) {
   const html = articles.map(article => `
     <div class="articleCard"> 
       <div class="cardHeader">Category
-        <div class="Marked"><img src="star.png" style="width:20px; height:20px"></div>
+        <div><img class="favorite" src="favorite-false.png" style="width:20px; height:20px"></div>
       </div>
        ${article.urlToImage ? `<img src="${article.urlToImage}" class="card-img-top" alt="..." />` : ''}
         <div class="cardBody">
@@ -42,6 +43,12 @@ function displayArticles(articles) {
   articleElement.innerHTML = html;
 }
 
+// Add event listener to execute listenForFavorites when DOM is fully loaded
+document.addEventListener("DOMContetLoaded", function() {
+  listenForFavorites();
+});
+
+  
 /* 
 const display = (response) => {
 const titleName = respone.articles[0].title
