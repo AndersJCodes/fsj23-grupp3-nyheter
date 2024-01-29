@@ -6,9 +6,9 @@ import axios from "axios";
 const searchDefault = "javascript&css";
 const articleElement = document.querySelector("#article");
 
-async function getNews(searchWord) {
+async function getNews(searchWord, date) {
   try {
-    const url = `https://newsapi.org/v2/everything?language=en&q=${searchWord}&apiKey=${key.API_KEY_2}`;
+    const url = `https://newsapi.org/v2/everything?language=en&q=${searchWord}&sortBy=${date}&apiKey=${key.API_KEY_2}`;
     const response = await axios.get(url);
     console.log(response.data.articles);
     // console.log(url);
@@ -33,7 +33,7 @@ function displayArticles(articles) {
           <p class="cardText">${article.description}</p>
           <a href="${article.url
       }" class="btn btn-primary">Read the full article</a>
-        <span>Source: ${article.author !== null ? article.author : 'Unkown'}</span>
+        <span>Source: ${article.author !== null ? article.author : 'Unkown'}</span><br><span>Published at ${article.publishedAt}</span>
         </div>
       </div>
     </div>
@@ -48,3 +48,6 @@ const display = (response) => {
 const titleName = respone.articles[0].title
 } 
 getNews(exampleurl).then(display);*/
+
+
+export { getNews };
