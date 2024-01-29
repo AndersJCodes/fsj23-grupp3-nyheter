@@ -1,10 +1,12 @@
 import { key } from "./configApi";
 import "./style.css";
 import axios from "axios";
+import signInModal from "./signIn-join";
 
 //const reactWord = "react.js";
 const searchDefault = "javascript&css";
 const articleElement = document.querySelector("#article");
+
 
 async function getNews(searchWord) {
   try {
@@ -41,6 +43,8 @@ function displayArticles(articles) {
 
   articleElement.innerHTML = html;
 }
+authModal();
+// signInModal();
 
 /* 
 const display = (response) => {
