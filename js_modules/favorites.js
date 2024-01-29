@@ -1,35 +1,16 @@
-
-
 //debugger
+
+//Listen to the generated buttons
+
 export function listenForFavorites() {
-    const favorites = document.querySelectorAll("#favorite"); //Import button
-    console.log(favorites);
-    //Listen for clicks on to the button
-    favorites.forEach(favorite => {
-        favorite.addEventListener("click", (clickedFav) => {
-            //console.log(favorite.src);
-            const src = clickedFav.target.getAttribute("src");
-            if (src === "favorite-false.png") {
-                console.log("adding favorite image");
-                clickedFav.target.setAttribute("src", "../favorite-true.png");
-                getFavorite();
-            } else {
-                console.log("removing favorite image");
-                clickedFav.target.setAttribute("src", "../favorite-false.png");
-                removeFavorite();
-            }
-        })
-    })
-
+  const favoritesBtn = document.querySelectorAll(".favorite");
+  document.addEventListener("click", function (event) {
+    // Check if the clicked element has the class "favorite"
+    if (event.target.classList.contains("favorite")) {
+      // If it does, handle the click event here
+      console.log("Favorite button clicked");
+      // You can access the clicked element using event.target
+      const clickedFavoriteButton = event.target;
+    }
+  });
 }
-
-    function getFavorite(){
-    console.log("GET favorite to storage");
-    }
-
-    function removeFavorite(){
-    console.log("REMOVE favorite from storage");
-    }
-
-
-
