@@ -2,14 +2,17 @@ import { key } from "./configApi";
 import "./style.css";
 import axios from "axios";
 import { searchOnWord } from "./search.js";
+import { setupCategoryEventListeners } from './category';
 
-//const reactWord = "react.js";
-const searchDefault = "javascript&css";
+const searchDefault = "javascript&css&html&react.js";
 const articleElement = document.querySelector("#article");
+const CSS = "CSS"
+const HTML = "HTML"
+const React = "react.js"
 
 export async function getNews(searchWord) {
   try {
-    const url = `https://newsapi.org/v2/everything?language=en&q=${searchWord}&apiKey=${key.API_KEY_2}`;
+    const url = `https://newsapi.org/v2/everything?language=en&q=${searchWord}&apiKey=${key.API_KEY_3}`;
     const response = await axios.get(url);
     console.log(response.data.articles);
     // console.log(url);
@@ -18,7 +21,12 @@ export async function getNews(searchWord) {
     console.error(error);
   }
 }
+
+setupCategoryEventListeners(getNews);
 getNews(searchDefault);
+
+
+
 
 function displayArticles(articles) {
   const html = articles.map(
