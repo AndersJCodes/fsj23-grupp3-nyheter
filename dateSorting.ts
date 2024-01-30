@@ -17,11 +17,15 @@ if (TopNewsElement) {
     });
 }
 
-if (breakingNewsElement) {
-    breakingNewsElement.addEventListener('click', async function () {
-        const newsData = await getNews(searchDefault, topNews);
-        const sortedNews = newsData.sort((a, b) => {
-            return new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime();
-        });
-    })
-};
+// if (breakingNewsElement) {
+//     breakingNewsElement.addEventListener('click', async function () {
+//         const newsData = await getNews(searchDefault, topNews);
+//         const sortedNews = newsData.sort((a, b) => {
+//             return new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime();
+//         });
+//     })
+// };
+
+if (breakingNews) {
+    getNews(searchDefault, breakingNews);
+}
