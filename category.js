@@ -1,6 +1,6 @@
 export function setupCategoryEventListeners(getNewsFunction) {
     document.getElementById("Övrigt-category").addEventListener("click", () => {
-      getNewsFunction("övrigt");
+      getNewsFunction("javascript&css&html&react.js");
     });
   
     document.getElementById("html-category").addEventListener("click", () => {
