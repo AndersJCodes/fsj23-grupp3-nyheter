@@ -91,3 +91,8 @@ body {
         width: 70%;
     }
 }
+
+.favorite {
+    width: 20px;
+    height: 20px;
+}

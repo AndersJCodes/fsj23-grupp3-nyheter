@@ -1,7 +1,7 @@
 import { key } from "./configApi";
 import "./style.css";
 import axios from "axios";
-import { listenForFavorites } from "./js_modules/favorites";
+import { listenForFavorites } from "./favorites";
 
 //const reactWord = "react.js";
 const searchDefault = "javascript&css";
@@ -10,10 +10,10 @@ const btnLoadNews = document.querySelector("#load--news");
 
 async function getNews(searchWord) {
   try {
-    const url = `https://newsapi.org/v2/everything?language=en&q=${searchWord}&apiKey=${key.API_KEY_2}`;
+    const url = `https://newsapi.org/v2/everything?language=en&q=${searchWord}&apiKey=${key.API_KEY_3}`;
     const response = await axios.get(url);
-    //console.log(response.data.articles);
-    // console.log(url);
+    console.log(response.data.articles);
+    //console.log(url);
     displayArticles(response.data.articles);
   } catch (error) {
     console.error(error);
@@ -26,7 +26,7 @@ function displayArticles(articles) {
     (article) => `
     <div class="articleCard"> 
       <div class="cardHeader">Category
-        <div><img class="favorite" src="favorite-false.png" style="width:20px; height:20px"></div>
+        <div><img class="favorite" src="favorite-false.png"></div>
       </div>
        ${
          article.urlToImage
