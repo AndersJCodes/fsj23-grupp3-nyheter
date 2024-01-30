@@ -11,7 +11,7 @@ const React = "react.js"
 
 async function getNews(searchWord) {
   try {
-    const url = `https://newsapi.org/v2/everything?language=en&q=${searchWord}&apiKey=${key.API_KEY_2}`;
+    const url = `https://newsapi.org/v2/everything?language=en&q=${searchWord}&apiKey=${key.API_KEY_3}`;
     const response = await axios.get(url);
     console.log(response.data.articles);
     // console.log(url);
