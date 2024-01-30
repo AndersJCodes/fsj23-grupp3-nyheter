@@ -1,5 +1,4 @@
 export function setupCategoryEventListeners(getNewsFunction) {
-    // Add event listeners to the anchor tags
     document.getElementById("Övrigt-category").addEventListener("click", () => {
       getNewsFunction("övrigt");
     });
