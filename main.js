@@ -1,15 +1,19 @@
 import { key } from "./configApi";
 import "./style.css";
 import axios from "axios";
+import { setupCategoryEventListeners } from './category';
 import { listenForFavorites } from "./favorites";
 
-//const reactWord = "react.js";
-const searchDefault = "javascript&css";
+const searchDefault = "javascript&css&html&react.js";
 const articleElement = document.querySelector("#article");
+const CSS = "CSS"
+const HTML = "HTML"
+const React = "react.js"
 const btnLoadNews = document.querySelector("#load--news");
 
 async function getNews(searchWord) {
   try {
+    const url = `https://newsapi.org/v2/everything?language=en&q=${searchWord}&apiKey=${key.API_KEY_3}`;
     const url = `https://newsapi.org/v2/everything?language=en&q=${searchWord}&apiKey=${key.API_KEY_3}`;
     const response = await axios.get(url);
     console.log(response.data.articles);
@@ -19,6 +23,12 @@ async function getNews(searchWord) {
     console.error(error);
   }
 }
+
+setupCategoryEventListeners(getNews);
+getNews(searchDefault);
+
+
+
 
 //Functioin that renders articles from the fetch
 function displayArticles(articles) {
