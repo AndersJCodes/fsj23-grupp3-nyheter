@@ -94,14 +94,7 @@ body {
     }
 }
 
-/* 
-.favorite {
-    width: 20px;
-    height: 20px;
-} */
-
 .favoriteBtn:hover {
     cursor: pointer;
-    background-color: #ba2020;
 
 }
