@@ -12,9 +12,9 @@ const React = "react.js"
 
 export async function getNews(searchWord) {
   try {
-    const url = `https://newsapi.org/v2/everything?language=en&q=${searchWord}&apiKey=${key.API_KEY_3}`;
+    const url = `https://newsapi.org/v2/everything?language=en&q=${searchWord}&apiKey=${key.API_KEY_2}`;
     const response = await axios.get(url);
-    console.log(response.data.articles);
+    //console.log(response.data.articles);
     // console.log(url);
     displayArticles(response.data.articles);
   } catch (error) {
@@ -28,7 +28,7 @@ getNews(searchDefault);
 
 
 
-function displayArticles(articles) {
+export function displayArticles(articles) {
   const html = articles.map(
     (article) => `
     <div class="articleCard"> 
@@ -60,15 +60,7 @@ function displayArticles(articles) {
 const searchWordButton = document.querySelector("#search-word-button");
 let searchInputField = document.querySelector("#search-input");
 
-/* const searchOnWord = (searchInputField) => {
-  let word = searchInputField.value;
-  getNews(word);
-}; */
-
 searchWordButton.addEventListener("click", (e) => {
   searchOnWord(searchInputField);
-
-  if (e) {
     searchInputField.value = "";
-  }
 });
