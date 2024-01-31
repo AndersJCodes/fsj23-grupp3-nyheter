@@ -34,9 +34,9 @@ function displayArticles(articles) {
   const html = articles.map(
     (article) => `
     <div class="articleCard"> 
-      <div class="cardHeader">Category
-        <div><img class="favorite" src="favorite-false.png"></div>
-      </div>
+    <div class="cardHeader">Category
+      <div><i class="favoriteBtn fa-regular fa-star fa-lg" style="color: #14A44D;"></i></div>
+    </div>
        ${
          article.urlToImage
            ? `<img src="${article.urlToImage}" class="card-img-top" alt="..." />`
