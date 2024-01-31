@@ -26,6 +26,8 @@ if (TopNewsElement) {
 //     })
 // };
 
-if (breakingNews) {
-    getNews(searchDefault, breakingNews);
-}
+if (breakingNewsElement) {
+    breakingNewsElement.addEventListener('click', function () {
+        getNews(searchDefault, breakingNews);
+    })
+};
