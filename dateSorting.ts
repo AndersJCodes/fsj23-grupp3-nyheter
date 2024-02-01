@@ -1,7 +1,7 @@
 import { getNews } from './main';
-declare module './main' {
-    export function getNews(searchWord: string, date: string): Promise<any[]>;
-}
+// declare module './main' {
+//     export function getNews(searchWord: string, date: string): Promise<any[]>;
+// }
 
 const TopNewsElement = document.getElementById('topNews');
 const breakingNewsElement = document.getElementById('breakingNews');
