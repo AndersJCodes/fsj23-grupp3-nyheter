@@ -1,7 +1,8 @@
 import { key } from "./configApi";
 import "./style.css";
 import axios from "axios";
-import signInModal from "./signIn-join";
+import authModal from "./signIn-join";
+import { join } from "./auth";
 
 //const reactWord = "react.js";
 const searchDefault = "javascript&css";
@@ -44,6 +45,7 @@ function displayArticles(articles) {
   articleElement.innerHTML = html;
 }
 authModal();
+join();
 // signInModal();
 
 /* 
