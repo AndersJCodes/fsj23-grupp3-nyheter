@@ -1,7 +1,7 @@
 .articleCard {
     width: 100%;
     margin-bottom: 20px;
-    box-shadow: 10px 6px rgb(214, 247, 214);
+    /* box-shadow: 10px 6px rgb(214, 247, 214); */
     border-bottom-right-radius: 10px;
     border-bottom-left-radius: 10px;
 }
@@ -44,6 +44,8 @@ body {
     display: flex;
     width: 100%;
     justify-content: space-between;
+    align-items: center;
+
 }
 
 .cardBody {
@@ -80,6 +82,7 @@ body {
     font-weight: bold;
 }
 
+
 @media screen and (min-width: 992px) {
     nav {
         border-bottom: 2px solid green;
@@ -89,4 +92,9 @@ body {
     .articleCard {
         width: 70%;
     }
+}
+
+.favoriteBtn:hover {
+    cursor: pointer;
+
 }
