@@ -63,17 +63,15 @@ export function displayArticles(articles) {
   articleElement.innerHTML = html;
 }
 authModal();
-join();
+document.querySelector("#join").addEventListener("click",function(){join()})
 // signInModal();
 
-getNews(searchDefault);
+
 
 document.addEventListener("DOMContentLoaded", () => {
   console.log("loaded");
   listenForFavorites();
 });
-
-export { getNews };
 
 const searchWordButton = document.querySelector("#search-word-button");
 let searchInputField = document.querySelector("#search-input");
@@ -82,3 +80,5 @@ searchWordButton.addEventListener("click", (e) => {
   searchOnWord(searchInputField);
   searchInputField.value = "";
 });
+
+export { getNews };

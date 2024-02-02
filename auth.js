@@ -20,30 +20,37 @@ const signInPassword = document.querySelector("#signInPassword");
 const signInForm = document.querySelector("#signInForm");
 const signInBtn = document.querySelector("#signInBtn");
 
+let count = 0;
 
 
 
 function join(){
-    const joinEmail= document.querySelector("#joinEmail")
-    const joinPassword= document.querySelector("#joinPassword")
-    const joinForm= document.querySelector("#joinForm")
-    const joinBtn = document.querySelector("#registerBtn");
-
+    if(count<1)
+    {
+        const joinEmail= document.querySelector("#joinEmail");
+        const joinPassword = document.querySelector("#joinPassword");
+        const joinForm = document.querySelector("#joinForm");   
+        const joinBtn = document.querySelector("#registerBtn");
     
-    joinBtn.addEventListener("click",userJoin); 
+        
+        joinBtn.addEventListener("click",userJoin(joinEmail,joinPassword)); 
+        count++
+    }
+
 }
 
 // auth content
-const secretContent = document.querySelector("#article");
+// const secretContent = document.querySelector("#article");
 
-secretContent.style.display = "none";
+// secretContent.style.display = "none";
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
-const userJoin = async() =>
+const userJoin = async(joinEmail,joinPassword) =>
 {
+    console.log("test");
     const userEmail = joinEmail.value;
     const userPassword = joinPassword.value;
 

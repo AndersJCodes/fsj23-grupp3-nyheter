@@ -5,7 +5,9 @@ const modal = document.querySelector('#modals');
 const authModal = () =>{
     //Modal
     //Sign In
-    modal.innerHTML += `
+    if(!document.querySelector("#signInModal") && !document.querySelector("#joinModal"))
+    {
+        modal.innerHTML += `
         <div class="modal fade" id="signInModal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -42,6 +44,9 @@ const authModal = () =>{
             </div>
         </div>    
     `
+        
+    }
+    
     // constjoinBtn = document.querySelector("#registerBtn");
     // joinBtn.addEventListener("click",userJoin); 
 }
@@ -77,7 +82,7 @@ const joinForm = () =>{
             <label for="inputPassword" class="form-label">Password</label>
             <input type="password" class="form-control" id="joinPassword"> 
         </div>
-        <button type="submit" class="btn btn-success id="registerBtn"">Register</button>
+        <button type="submit" class="btn btn-success" id="registerBtn">Register</button>
     </form>
     `)
 }
