@@ -30,13 +30,6 @@ async function getNews() {
 
 getNews();
 
-//newsArr.push(await getNews(CSS));
-//await addKeyAndValue(newsArr, category, CSS);
-//console.log(newsArr);
-
-//setupCategoryEventListeners(getNews);
-//getNews(searchDefault);
-
 //Functioin that renders articles from the fetch
 export function displayArticles(articles) {
   const html = articles
@@ -70,8 +63,12 @@ export function displayArticles(articles) {
 
   articleElement.innerHTML = html;
 }
+
 //authModal();
 // signInModal();
+
+//setupCategoryEventListeners(getNews);
+//getNews(searchDefault);
 
 //getNews(searchDefault);
 
