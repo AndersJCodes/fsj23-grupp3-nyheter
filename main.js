@@ -6,28 +6,36 @@ import { setupCategoryEventListeners } from "./category";
 import { listenForFavorites } from "./favorites";
 import authModal from "./signIn-join";
 
+const newsArr = [];
 const searchDefault = "javascript&css&html&react.js";
 const articleElement = document.querySelector("#article");
-const CSS = "CSS";
-const HTML = "HTML";
-const React = "react.js";
-const btnLoadNews = document.querySelector("#load--news");
+//const CSS = "CSS";
+//const HTML = "HTML";
+//const React = "react.js";
+//const btnLoadNews = document.querySelector("#load--news");
 
-
-async function getNews(searchWord, date) {
+async function getNews() {
   try {
-    const url = `https://newsapi.org/v2/everything?language=en&q=${searchWord}&sortBy=${date}&apiKey=${key.API_KEY_2}`;
+    const url = `https://newsapi.org/v2/everything?language=en&q=${searchDefault}&apiKey=${key.API_KEY_3}`;
     const response = await axios.get(url);
-    console.log(response.data.articles);
-    //console.log(url);
-    displayArticles(response.data.articles);
+    //console.log(response.data.articles);
+    newsArr.push(...response.data.articles);
+    newsArr.sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt)); // Sort by date in descending order
+    console.log(newsArr);
+    displayArticles(newsArr);
   } catch (error) {
     console.error(error);
   }
 }
 
-setupCategoryEventListeners(getNews);
-getNews(searchDefault);
+getNews();
+
+//newsArr.push(await getNews(CSS));
+//await addKeyAndValue(newsArr, category, CSS);
+//console.log(newsArr);
+
+//setupCategoryEventListeners(getNews);
+//getNews(searchDefault);
 
 //Functioin that renders articles from the fetch
 export function displayArticles(articles) {
@@ -57,17 +65,18 @@ export function displayArticles(articles) {
       </div>
     </div>
   `
-    );
+    )
+    .join("");
 
   articleElement.innerHTML = html;
 }
-authModal();
+//authModal();
 // signInModal();
 
-getNews(searchDefault);
+//getNews(searchDefault);
 
-document.addEventListener("DOMContentLoaded", () => {
-  console.log("loaded");
+/* document.addEventListener("DOMContentLoaded", () => {
+  //console.log("loaded");
   listenForFavorites();
 });
 
@@ -80,3 +89,4 @@ searchWordButton.addEventListener("click", (e) => {
   searchOnWord(searchInputField);
   searchInputField.value = "";
 });
+ */
