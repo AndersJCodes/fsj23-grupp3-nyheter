@@ -1,4 +1,4 @@
-import { getNews } from './main';
+import { displayArticles, getNews } from './main';
 // declare module './main' {
 //     export function getNews(searchWord: string, date: string): Promise<any[]>;
 // }
@@ -13,21 +13,24 @@ const breakingNews = 'publishedAt';
 
 if (TopNewsElement) {
     TopNewsElement.addEventListener('click', function () {
-        getNews(searchDefault, topNews)
+        getNews(searchDefault)
     });
 }
 
+
 // if (breakingNewsElement) {
 //     breakingNewsElement.addEventListener('click', async function () {
-//         const newsData = await getNews(searchDefault, topNews);
-//         const sortedNews = newsData.sort((a, b) => {
+//         const newsData = await getNews();
+//         const sortedNews = [...newsData];
+//         sortedNews.sort((a, b) => {
 //             return new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime();
 //         });
-//     })
+//         displayArticles(sortedNews)
+//     });
 // };
 
-if (breakingNewsElement) {
-    breakingNewsElement.addEventListener('click', function () {
-        getNews(searchDefault, breakingNews);
-    })
-};
+// if (breakingNewsElement) {
+//     breakingNewsElement.addEventListener('click', function () {
+//         getNews(searchDefault, breakingNews);
+//     })
+// };

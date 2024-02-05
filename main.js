@@ -12,9 +12,9 @@ const HTML = "HTML";
 const React = "react.js";
 const btnLoadNews = document.querySelector("#load--news");
 
-async function getNews(searchWord, date) {
+async function getNews(searchWord) {
   try {
-    const url = `https://newsapi.org/v2/everything?language=en&q=${searchWord}&sortBy=${date}&apiKey=${key.API_KEY_2}`;
+    const url = `https://newsapi.org/v2/everything?language=en&q=${searchWord}&apiKey=${key.API_KEY_1}`;
     const response = await axios.get(url);
     console.log(response.data.articles);
     //console.log(url);
@@ -37,19 +37,16 @@ export function displayArticles(articles) {
     <div class="cardHeader">Category
       <div><i class="favoriteBtn fa-regular fa-star fa-lg" style="color: #14A44D;"></i></div>
     </div>
-       ${
-         article.urlToImage
-           ? `<img src="${article.urlToImage}" class="card-img-top" alt="..." />`
-           : ""
-       }
+       ${article.urlToImage
+          ? `<img src="${article.urlToImage}" class="card-img-top" alt="..." />`
+          : ""
+        }
         <div class="cardBody">
           <h5 class="cardTitle">${article.title}</h5>
           <p class="cardText">${article.description}</p>
-          <a href="${
-            article.url
-          }" class="btn btn-primary">Read the full article</a>
-        <span>Source: ${
-          article.author !== null ? article.author : "Unkown"
+          <a href="${article.url
+        }" class="btn btn-primary">Read the full article</a>
+        <span>Source: ${article.author !== null ? article.author : "Unkown"
         }</span><br><span>Published at ${article.publishedAt}</span>
         </div>
       </div>
@@ -58,6 +55,17 @@ export function displayArticles(articles) {
     );
 
   articleElement.innerHTML = html;
+}
+const breakingNewsElement = document.getElementById('breakingNews');
+
+if (breakingNewsElement) {
+  breakingNewsElement.addEventListener('click', async function () {
+    const sortedNews = getNews.sort((a, b) => {
+      return new Date(b.authoredAt).getTime() - new Date(a.authoredAt).getTime();
+    });
+
+    displayArticles(sortedNews);
+  });
 }
 
 getNews(searchDefault);
