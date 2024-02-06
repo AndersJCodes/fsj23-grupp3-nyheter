@@ -20,23 +20,38 @@ const signInPassword = document.querySelector("#signInPassword");
 const signInForm = document.querySelector("#signInForm");
 const signInBtn = document.querySelector("#signInBtn");
 
-let count = 0;
+// let count = 0;
 
 
 
 function join(){
-    if(count<1)
-    {
-        const joinEmail= document.querySelector("#joinEmail");
-        const joinPassword = document.querySelector("#joinPassword");
-        const joinForm = document.querySelector("#joinForm");   
-        const joinBtn = document.querySelector("#registerBtn");
+    // if(count<1)
+    // {
+    //     const joinEmail= document.querySelector("#joinEmail");
+    //     const joinPassword = document.querySelector("#joinPassword");
+    //     const joinForm = document.querySelector("#joinForm");   
+    //     const joinBtn = document.querySelector("#registerBtn");
     
         
-        joinBtn.addEventListener("click",userJoin(joinEmail,joinPassword)); 
-        count++
-    }
+    //     joinBtn.addEventListener("click",userJoin(joinEmail,joinPassword)); 
+    //     count++
+    // }
+    
+    const joinBtn = document.querySelector("#registerBtn");
 
+    console.log("join function loaded");
+    
+    joinBtn.addEventListener("click",(e)=>{
+        e.preventDefault();
+        const joinEmail= document.querySelector("#joinEmail");
+        const joinPassword = document.querySelector("#joinPassword");
+        const joinForm = document.querySelector("#joinForm");  
+        userJoin(joinEmail,joinPassword)
+        console.log("email: "+ joinEmail.value);
+        console.log("password: "+ joinPassword.value);
+    }); 
+        
+ 
 }
 
 // auth content
@@ -50,7 +65,7 @@ const auth = getAuth(app);
 
 const userJoin = async(joinEmail,joinPassword) =>
 {
-    console.log("test");
+    console.log("inside userJoin");
     const userEmail = joinEmail.value;
     const userPassword = joinPassword.value;
 
@@ -69,4 +84,4 @@ const userJoin = async(joinEmail,joinPassword) =>
 
 
 
-export {join}
+export {join,userJoin}
