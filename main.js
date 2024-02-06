@@ -67,7 +67,9 @@ export function displayArticles(articles) {
   articleElement.innerHTML = html;
 }
 authModal();
-document.querySelector("#join").addEventListener("click",function(){join()})
+document.querySelector("#join").addEventListener("click", function () {
+  join();
+});
 // signInModal();
 
 //setupCategoryEventListeners(getNews);
@@ -88,4 +90,4 @@ searchWordButton.addEventListener("click", (e) => {
   searchInputField.value = "";
 });
 
-export { getNews }
+export { getNews };*/
