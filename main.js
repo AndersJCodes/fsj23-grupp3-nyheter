@@ -9,6 +9,8 @@ import authModal from "./signIn-join";
 const newsArr = [];
 const searchDefault = "javascript&css&html&react.js";
 const articleElement = document.querySelector("#article");
+const domains = "";
+const excludeDomains = "dpreview.com";
 //const CSS = "CSS";
 //const HTML = "HTML";
 //const React = "react.js";
@@ -16,7 +18,7 @@ const articleElement = document.querySelector("#article");
 
 async function getNews() {
   try {
-    const url = `https://newsapi.org/v2/everything?language=en&q=${searchDefault}&apiKey=${key.API_KEY_3}`;
+    const url = `https://newsapi.org/v2/everything?language=en&q=${searchDefault}&excludeDomains=${excludeDomains}&apiKey=${key.API_KEY_3}`;
     const response = await axios.get(url);
     //console.log(response.data.articles);
     newsArr.push(...response.data.articles);
