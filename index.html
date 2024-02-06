@@ -34,11 +34,10 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0 g-1">
           <li class="nav-item">
-            <a class="nav-link text-capitalize active" aria-current="page" href="#" id="topNews">Top News Stories</a>
+            <a class="nav-link text-capitalize active" aria-current="page" href="#">Top News Stories</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-capitalize btn-status" aria-current="page" href="#" id="breakingNews">Breaking
-              News</a>
+            <a class="nav-link text-capitalize btn-status" aria-current="page" href="#">Breaking News</a>
           </li>
           <li class="nav-item">
             <a class="nav-link text-capitalize btn-status" href="#">Saved News</a>
@@ -58,10 +57,12 @@
         </ul>
         <ul class="navbar-nav mx-lg-3 my-2 my-lg-0">
           <li class="nav-item mx-lg-1 my-1 my-lg-0">
-            <a class="btn btn-success text-nowrap" href="#" role="button">Sign in</a>
+            <a class="btn btn-success text-nowrap" type="button" data-bs-toggle="modal"
+              data-bs-target="#signInModal">Sign in</a>
           </li>
           <li class="nav-item">
-            <a role="button" href="#" class="btn btn-outline-secondary">Join</a>
+            <a href="#" class="btn btn-outline-secondary" type="button" data-bs-toggle="modal"
+              data-bs-target="#joinModal" id="join">Join</a>
           </li>
           <form class="d-flex mx-lg-3 my-3 my-lg-0" role="search">
             <input class="form-control me-2" id="search-input" type="search" placeholder="Search" aria-label="Search">
@@ -78,6 +79,7 @@
 
     <article class="container" id="article">
     </article>
+    <div id="modals"></div>
   </main>
 
   <script type="module" src="./favorites.js"></script>
@@ -87,7 +89,6 @@
     crossorigin="anonymous"></script>
   <script type="module " src="dateSorting.ts"></script>
   <script src="https://kit.fontawesome.com/06a427721a.js" crossorigin="anonymous"></script>
-
 </body>
 
 </html>
