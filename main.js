@@ -1,34 +1,37 @@
 import { key } from "./configApi";
 import "./style.css";
 import axios from "axios";
-import { searchOnWord } from "./search.js";
+//import { searchOnWord } from "./search.js";
 import { setupCategoryEventListeners } from "./category";
 import { listenForFavorites } from "./favorites";
-import authModal from "./signIn-join";
-import { join } from "./auth";
+//import authModal from "./signIn-join";
+//import { join } from "./auth";
 
+const newsArr = [];
 const searchDefault = "javascript&css&html&react.js";
 const articleElement = document.querySelector("#article");
-const CSS = "CSS";
-const HTML = "HTML";
-const React = "react.js";
-const btnLoadNews = document.querySelector("#load--news");
+const domains = "";
+const excludeDomains = "dpreview.com";
+//const CSS = "CSS";
+//const HTML = "HTML";
+//const React = "react.js";
+//const btnLoadNews = document.querySelector("#load--news");
 
-
-async function getNews(searchWord, date) {
+async function getNews() {
   try {
-    const url = `https://newsapi.org/v2/everything?language=en&q=${searchWord}&sortBy=${date}&apiKey=${key.API_KEY_2}`;
+    const url = `https://newsapi.org/v2/everything?language=en&q=${searchDefault}&excludeDomains=${excludeDomains}&apiKey=${key.API_KEY_3}`;
     const response = await axios.get(url);
-    console.log(response.data.articles);
-    //console.log(url);
-    displayArticles(response.data.articles);
+    //console.log(response.data.articles);
+    newsArr.push(...response.data.articles);
+    newsArr.sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt)); // Sort by date in descending order
+    console.log(newsArr);
+    displayArticles(newsArr);
   } catch (error) {
     console.error(error);
   }
 }
 
-setupCategoryEventListeners(getNews);
-getNews(searchDefault);
+getNews();
 
 //Functioin that renders articles from the fetch
 export function displayArticles(articles) {
@@ -58,27 +61,29 @@ export function displayArticles(articles) {
       </div>
     </div>
   `
-    );
+    )
+    .join("");
 
   articleElement.innerHTML = html;
 }
-authModal();
-document.querySelector("#join").addEventListener("click",function(){join()})
+
+listenForFavorites();
+//authModal();
+//document.querySelector("#join").addEventListener("click", function () {
+//  join();
+//});
 // signInModal();
 
-
-
-document.addEventListener("DOMContentLoaded", () => {
-  console.log("loaded");
-  listenForFavorites();
-});
+//setupCategoryEventListeners(getNews);
+//getNews(searchDefault);
 
 const searchWordButton = document.querySelector("#search-word-button");
 let searchInputField = document.querySelector("#search-input");
 
 searchWordButton.addEventListener("click", (e) => {
+  e.preventDefault();
   searchOnWord(searchInputField);
   searchInputField.value = "";
 });
-
-export { getNews };
+/*
+export { getNews };*/
