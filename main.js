@@ -88,4 +88,4 @@ searchWordButton.addEventListener("click", (e) => {
   searchInputField.value = "";
 });
 
-export { getNews };
+export { getNews }
