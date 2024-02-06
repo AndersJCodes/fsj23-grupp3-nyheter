@@ -67,6 +67,7 @@ export function displayArticles(articles) {
   articleElement.innerHTML = html;
 }
 
+listenForFavorites();
 //authModal();
 //document.querySelector("#join").addEventListener("click", function () {
 //  join();
@@ -76,18 +77,13 @@ export function displayArticles(articles) {
 //setupCategoryEventListeners(getNews);
 //getNews(searchDefault);
 
-//
-console.log("loaded");
-listenForFavorites();
-document.addEventListener("DOMContentLoaded", () => {});
-
-/*
 const searchWordButton = document.querySelector("#search-word-button");
 let searchInputField = document.querySelector("#search-input");
 
 searchWordButton.addEventListener("click", (e) => {
+  e.preventDefault();
   searchOnWord(searchInputField);
   searchInputField.value = "";
 });
-
+/*
 export { getNews };*/
