@@ -39,12 +39,12 @@ function join(){
 
 }
 
-// auth content
-// const secretContent = document.querySelector("#article");
+auth content
+const secretContent = document.querySelector("#article");
 
-// secretContent.style.display = "none";
+secretContent.style.display = "none";
 
-// Initialize Firebase
+Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
@@ -69,4 +69,4 @@ const userJoin = async(joinEmail,joinPassword) =>
 
 
 
-export {join}
+//export {join}

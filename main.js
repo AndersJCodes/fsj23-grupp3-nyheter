@@ -1,11 +1,11 @@
 import { key } from "./configApi";
 import "./style.css";
 import axios from "axios";
-import { searchOnWord } from "./search.js";
-import { setupCategoryEventListeners } from "./category";
+//import { searchOnWord } from "./search.js";
+//import { setupCategoryEventListeners } from "./category";
 import { listenForFavorites } from "./favorites";
-import authModal from "./signIn-join";
-import { join } from "./auth";
+//import authModal from "./signIn-join";
+//import { join } from "./auth";
 
 const newsArr = [];
 const searchDefault = "javascript&css&html&react.js";
@@ -66,22 +66,22 @@ export function displayArticles(articles) {
 
   articleElement.innerHTML = html;
 }
-authModal();
-document.querySelector("#join").addEventListener("click", function () {
-  join();
-});
+
+//authModal();
+//document.querySelector("#join").addEventListener("click", function () {
+//  join();
+//});
 // signInModal();
 
 //setupCategoryEventListeners(getNews);
 //getNews(searchDefault);
 
 //
+console.log("loaded");
+listenForFavorites();
+document.addEventListener("DOMContentLoaded", () => {});
 
-/* document.addEventListener("DOMContentLoaded", () => {
-  //console.log("loaded");
-  listenForFavorites();
-});
-
+/*
 const searchWordButton = document.querySelector("#search-word-button");
 let searchInputField = document.querySelector("#search-input");
 
