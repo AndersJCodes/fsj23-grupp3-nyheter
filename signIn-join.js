@@ -1,10 +1,13 @@
+
 const modal = document.querySelector('#modals');
 
 
 const authModal = () =>{
     //Modal
     //Sign In
-    modal.innerHTML += `
+    if(!document.querySelector("#signInModal") && !document.querySelector("#joinModal"))
+    {
+        modal.innerHTML += `
         <div class="modal fade" id="signInModal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -41,43 +44,48 @@ const authModal = () =>{
             </div>
         </div>    
     `
-
+        
+    }
+    
+    // constjoinBtn = document.querySelector("#registerBtn");
+    // joinBtn.addEventListener("click",userJoin); 
 }
 
 const signInForm = () => {
     return(`
-    <form>
+    <form id="signInForm">
         <div class="mb-3">
             <label for="inputEmail" class="form-label">Email address</label>
-            <input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp">
+            <input type="email" class="form-control" id="signInEmail" aria-describedby="emailHelp">
         </div>
         <div class="mb-3">
             <label for="inputPassword" class="form-label">Password</label>
-            <input type="password" class="form-control" id="inputPassword"> 
+            <input type="password" class="form-control" id="signInPassword"> 
         </div>
         <div class="mb-3 form-check">
             <a href="#" type="button" data-bs-toggle="modal" data-bs-target="#joinModal">Register new user</a>
         </div>
-        <button type="submit" class="btn btn-success">Sign in</button>
+        <button type="submit" class="btn btn-success" id="signInBtn">Sign in</button>
     </form>
     `)
 }
 
 const joinForm = () =>{
+    
     return(`
-    <form>
+    <form id="joinForm" >
         <div class="mb-3">
             <label for="inputEmail" class="form-label">Email address</label>
-            <input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp">
+            <input type="email" class="form-control" id="joinEmail" aria-describedby="emailHelp">
         </div>
         <div class="mb-3">
             <label for="inputPassword" class="form-label">Password</label>
-            <input type="password" class="form-control" id="inputPassword"> 
+            <input type="password" class="form-control" id="joinPassword"> 
         </div>
-        <button type="submit" class="btn btn-success">Register</button>
+        <button type="submit" class="btn btn-success" id="registerBtn">Register</button>
     </form>
     `)
 }
 
-export default authModal();
+export default authModal
 

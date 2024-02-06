@@ -5,6 +5,7 @@ import { searchOnWord } from "./search.js";
 import { setupCategoryEventListeners } from "./category";
 import { listenForFavorites } from "./favorites";
 import authModal from "./signIn-join";
+import { join } from "./auth";
 
 const newsArr = [];
 const searchDefault = "javascript&css&html&react.js";
@@ -65,21 +66,19 @@ export function displayArticles(articles) {
 
   articleElement.innerHTML = html;
 }
-
-//authModal();
+authModal();
+document.querySelector("#join").addEventListener("click",function(){join()})
 // signInModal();
 
 //setupCategoryEventListeners(getNews);
 //getNews(searchDefault);
 
-//getNews(searchDefault);
+//
 
 /* document.addEventListener("DOMContentLoaded", () => {
   //console.log("loaded");
   listenForFavorites();
 });
-
-export { getNews };
 
 const searchWordButton = document.querySelector("#search-word-button");
 let searchInputField = document.querySelector("#search-input");
@@ -88,4 +87,5 @@ searchWordButton.addEventListener("click", (e) => {
   searchOnWord(searchInputField);
   searchInputField.value = "";
 });
- */
+
+export { getNews };
