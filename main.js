@@ -2,7 +2,7 @@ import { key } from "./configApi";
 import "./style.css";
 import axios from "axios";
 //import { searchOnWord } from "./search.js";
-//import { setupCategoryEventListeners } from "./category";
+import { setupCategoryEventListeners } from "./category";
 import { listenForFavorites } from "./favorites";
 //import authModal from "./signIn-join";
 //import { join } from "./auth";
