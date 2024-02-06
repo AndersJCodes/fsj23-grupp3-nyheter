@@ -64,6 +64,16 @@ export function displayArticles(articles) {
   articleElement.innerHTML = html;
 }
 
+let sortToggle = true;
+
+function newsOrder() {
+  newsArr.reverse();
+  sortToggle = !sortToggle;
+  displayArticles(newsArr);
+}
+
+document.getElementById('flexSwitchCheckChecked').addEventListener('click', newsOrder);
+
 listenForFavorites();
 //authModal();
 //document.querySelector("#join").addEventListener("click", function () {

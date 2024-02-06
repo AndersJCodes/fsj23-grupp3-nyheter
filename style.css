@@ -10,6 +10,12 @@ body {
     background-color: #fafafa;
 }
 
+.toggleContainer {
+    display: flex;
+    justify-content: right;
+    width: 80%;
+}
+
 .container {
     width: 100%;
     display: flex;

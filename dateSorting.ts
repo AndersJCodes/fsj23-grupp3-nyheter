@@ -1,21 +1,21 @@
-import { displayArticles, getNews } from './main';
+// import { displayArticles, getNews } from './main';
 // declare module './main' {
 //     export function getNews(searchWord: string, date: string): Promise<any[]>;
 // }
 
-const TopNewsElement = document.getElementById('topNews');
-const breakingNewsElement = document.getElementById('breakingNews');
+// const TopNewsElement = document.getElementById('topNews');
+// const breakingNewsElement = document.getElementById('breakingNews');
 
-const searchDefault = "javascript&css";
-const topNews = "relevancy";
-const breakingNews = 'publishedAt';
+// const searchDefault = "javascript&css";
+// const topNews = "relevancy";
+// const breakingNews = 'publishedAt';
 
 
-if (TopNewsElement) {
-    TopNewsElement.addEventListener('click', function () {
-        getNews(searchDefault)
-    });
-}
+// if (TopNewsElement) {
+//     TopNewsElement.addEventListener('click', function () {
+//         getNews(searchDefault)
+//     });
+// }
 
 
 // if (breakingNewsElement) {
