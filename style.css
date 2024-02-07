@@ -13,7 +13,8 @@ body {
 .toggleContainer {
     display: flex;
     justify-content: right;
-    width: 80%;
+    width: 100%;
+    padding: 4px;
 }
 
 .container {
@@ -97,6 +98,10 @@ body {
 
     .articleCard {
         width: 70%;
+    }
+
+    .toggleContainer {
+        width: 80%;
     }
 }
 
