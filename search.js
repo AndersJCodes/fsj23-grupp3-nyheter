@@ -1,20 +1,35 @@
-import { displayArticles } from "./main.js";
-import { key } from "./configApi";
-import axios from "axios";
+import { displayArticles, newsArr } from "./main.js";
 
 //Search on word
-export const searchOnWord = (searchInputField) => {
-  let word = searchInputField.value;
-  getSearchedNews(word);
+//Convert to lower cases and check if search word is contained.
+const checkManyWords = function (artikelObjekt, sokord) {
+  let lowCaseArticle;
+  if (artikelObjekt === null || artikelObjekt === undefined) {
+    lowCaseArticle = "null";
+  } else {
+    lowCaseArticle = artikelObjekt.toLowerCase();
+  }
+  const lowCaseSokord = sokord.toLowerCase(); // Konvertera sökordet till små bokstäver
+
+  return lowCaseArticle.includes(lowCaseSokord);
 };
 
-async function getSearchedNews(searchWord) {
-  try {
-    const url = `https://newsapi.org/v2/everything?language=en&searchIn=title&q=${searchWord}&pageSize=10&apiKey=${key.API_KEY_2}`;
-    const response = await axios.get(url);
-    //console.log(response.data.articles);
-    displayArticles(response.data.articles);
-  } catch (error) {
-    console.error("Det uppstod ett fel:", error);
+//Check if the articles author or title contain search word
+const checkSearch = function (article, searchInput) {
+  if (checkManyWords(article.author, searchInput)) {
+    return true;
+  } else if (checkManyWords(article.title, searchInput)) {
+    return true;
+  } else {
+    return false;
   }
-}
+};
+
+//Filter articles
+export const search = (searchInputField) => {
+  const filteredArticles = newsArr.filter((article) =>
+    checkSearch(article, searchInputField)
+  );
+  //console.log(filteredArticles);
+  displayArticles(filteredArticles);
+};
