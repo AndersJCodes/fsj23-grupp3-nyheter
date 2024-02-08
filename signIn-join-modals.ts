@@ -2,9 +2,9 @@
 
 
 
-const authModal = () =>{
+const authModal = ():void =>{
 
-    const modal = document.querySelector('#modals');
+    const modal:any = document.querySelector('#modals');
     //Modal
     //Sign In
     if(!document.querySelector("#signInModal") && !document.querySelector("#joinModal"))
@@ -49,7 +49,7 @@ const authModal = () =>{
     }
 }
 
-const signInForm = () => {
+const signInForm = ():string => {
     return(`
     <form id="signInForm">
         <div class="mb-3">
@@ -68,7 +68,7 @@ const signInForm = () => {
     `)
 }
 
-const joinForm = () =>{
+const joinForm = ():string =>{
     
     return(`
     <form id="joinForm" >
