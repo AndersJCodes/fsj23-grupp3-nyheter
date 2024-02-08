@@ -74,7 +74,7 @@ listenForFavorites();
 //});
 // signInModal();
 
-//setupCategoryEventListeners(getNews);
+setupCategoryEventListeners(getNews);
 //getNews(searchDefault);
 
 const searchWordButton = document.querySelector("#search-word-button");
