@@ -50,8 +50,6 @@ export function displayArticles(articles) {
         <div class="cardBody">
           <h5 class="cardTitle">${article.title}</h5>
           <p class="cardText">${article.description}</p>
-          <a href="${article.url
-        }" class="btn btn-primary">Read the full article</a>
         <span>Source: ${article.author !== null ? article.author : "Unkown"
         }</span><br><span>Published at ${article.publishedAt}</span>
         </div>
@@ -81,7 +79,9 @@ function newsOrder() {
   displayArticles(newsArr);
 }
 
-
+document
+  .getElementById("flexSwitchCheckChecked")
+  .addEventListener("click", newsOrder);
 
 
 
