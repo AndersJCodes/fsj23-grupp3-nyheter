@@ -11,7 +11,7 @@ signInWithEmailAndPassword,
 onAuthStateChanged,
 signOut
 } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-auth.js";
-
+import validation,{removeValidation} from "./validation";
 
 
 function registerNewUser(){
@@ -23,8 +23,7 @@ function registerNewUser(){
         const joinPassword = document.querySelector("#joinPassword");
 
         registerUserToFirebase(joinEmail,joinPassword)
-        console.log("email: "+ joinEmail.value);
-        console.log("password: "+ joinPassword.value);
+
     }); 
         
 }
@@ -38,8 +37,6 @@ function signInUser(){
         const signInPassword = document.querySelector("#signInPassword");
 
         authenticatUserInFirebase(signInEmail,signInPassword);
-        console.log("email: "+ signInEmail.value);
-        console.log("password: "+ signInPassword.value);
     }); 
         
 }
@@ -63,26 +60,19 @@ function signOutUser(){
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
-const signInBtn = document.querySelector('#signInModalBtn');
-const joinBtn = document.querySelector('#joinModalBtn');
-const signOutBtn = document.querySelector('#signOutBtn');
-
 const registerUserToFirebase = async(joinEmail,joinPassword) =>
 {
-    console.log("inside registerUserToFirebase");
     const userEmail = joinEmail.value;
     const userPassword = joinPassword.value;
 
     createUserWithEmailAndPassword(auth,userEmail,userPassword)
-    .then((userCredential)=>{
-        const user = userCredential.user;
-        console.log(user);
+    .then(()=>{
         alert("Your account has been created!")
     })
     .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log(errorCode + errorMessage)
+        validation('joinForm',error.message);
+        console.log(error.message);
+        
     });
 }
 
@@ -91,19 +81,13 @@ const authenticatUserInFirebase = async(signInEmail,signInPassword) =>
     const userEmail = signInEmail.value;
     const userPassword = signInPassword.value;
     signInWithEmailAndPassword(auth,userEmail,userPassword)
-    .then((userCredential)=>{
-        const user = userCredential.user;
-        console.log(user);
-        alert("User logged in: ", user.email);
-
-        signInBtn.classList.add("d-none");
-        joinBtn.classList.add("d-none");
-        signOutBtn.classList.remove("d-none");
+    .then(()=>{
+        removeValidation(document.querySelector(`#signInForm`));
     })
     .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log(errorCode + errorMessage)
+
+        validation('signInForm',error.message);
+        console.log(errorCode + errorMessage);
     });
 
 }
@@ -115,15 +99,36 @@ const logoutUser = ()=>
     signOut(auth)
     .then(()=>
     {
-        alert('you signed out')
-        signInBtn.classList.remove("d-none");
-        joinBtn.classList.remove("d-none");
-        signOutBtn.classList.add("d-none");
+        alert('You signed out')
+        
     })
     .catch((err)=>{
         console.log(err.message)
     })
 }
+
+onAuthStateChanged(auth,(user)=>{
+    const signInBtn = document.querySelector('#signInModalBtn');
+    const joinBtn = document.querySelector('#joinModalBtn');
+    const signOutBtn = document.querySelector('#signOutBtn');
+    const savedNews = document.querySelector('#savedNews');
+    if(user===null)
+    {
+        
+        signInBtn.classList.remove("d-none");
+        joinBtn.classList.remove("d-none");
+        signOutBtn.classList.add("d-none");
+        savedNews.classList.add("d-none");
+        
+    }
+    if(user!==null)
+    {
+        savedNews.classList.remove("d-none");
+        signInBtn.classList.add("d-none");
+        joinBtn.classList.add("d-none");
+        signOutBtn.classList.remove("d-none");
+    }
+})
 
 function authentication(){
     registerNewUser();

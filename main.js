@@ -3,8 +3,8 @@ import "./style.css";
 import axios from "axios";
 //import { search } from "./search.js";
 import { setupCategoryEventListeners } from "./category";
-//import { listenForFavorites } from "./favorites";
-import authModal from "./signIn-join";
+import { listenForFavorites } from "./favorites";
+import authModal from "./signIn-join-modals.js";
 import authentication from "./auth";
 
 export const newsArr = [];
