@@ -125,6 +125,12 @@ const logoutUser = ()=>
     })
 }
 
+function authentication(){
+    registerNewUser();
+    signInUser();
+    signOutUser();
+}
 
 
-export {registerNewUser,signInUser,signOutUser}
+
+export default authentication

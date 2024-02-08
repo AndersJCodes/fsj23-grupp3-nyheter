@@ -5,7 +5,7 @@ import axios from "axios";
 import { setupCategoryEventListeners } from "./category";
 import { listenForFavorites } from "./favorites";
 import authModal from "./signIn-join";
-import {registerNewUser,signInUser,signOutUser} from "./auth";
+import authentication from "./auth";
 
 const newsArr = [];
 const searchDefault = "javascript&css&html&react.js";
@@ -69,12 +69,11 @@ export function displayArticles(articles) {
 
 listenForFavorites();
 authModal();
+authentication();
 // document.querySelector("#join").addEventListener("click", function () {
  
 // });
-registerNewUser();
-signInUser();
-signOutUser();
+
 
 //setupCategoryEventListeners(getNews);
 //getNews(searchDefault);
