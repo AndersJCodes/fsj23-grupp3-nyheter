@@ -111,20 +111,22 @@ onAuthStateChanged(auth,(user)=>{
     const signInBtn = document.querySelector('#signInModalBtn');
     const joinBtn = document.querySelector('#joinModalBtn');
     const signOutBtn = document.querySelector('#signOutBtn');
+    const savedNews = document.querySelector('#savedNews');
     if(user===null)
     {
+        
         signInBtn.classList.remove("d-none");
         joinBtn.classList.remove("d-none");
         signOutBtn.classList.add("d-none");
+        savedNews.classList.add("d-none");
         
     }
     if(user!==null)
     {
+        savedNews.classList.remove("d-none");
         signInBtn.classList.add("d-none");
         joinBtn.classList.add("d-none");
         signOutBtn.classList.remove("d-none");
-        alert('Welcome '+ user.email)
-
     }
 })
 
