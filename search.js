@@ -2,7 +2,7 @@ import { displayArticles, newsArr } from "./main.js";
 
 //Search on word
 //Convert to lower cases and check if search word is contained.
-const checkManyWords = function (artikelObjekt, sokord) {
+export const checkManyWords = function (artikelObjekt, sokord) {
   let lowCaseArticle;
   if (artikelObjekt === null || artikelObjekt === undefined) {
     lowCaseArticle = "null";
@@ -15,10 +15,12 @@ const checkManyWords = function (artikelObjekt, sokord) {
 };
 
 //Check if the articles author or title contain search word
-const checkSearch = function (article, searchInput) {
+export const checkSearch = function (article, searchInput) {
   if (checkManyWords(article.author, searchInput)) {
     return true;
   } else if (checkManyWords(article.title, searchInput)) {
+    return true;
+  } else if (checkManyWords(article.description, searchInput)) {
     return true;
   } else {
     return false;
