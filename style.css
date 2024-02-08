@@ -10,6 +10,13 @@ body {
     background-color: #fafafa;
 }
 
+.toggleContainer {
+    display: flex;
+    justify-content: right;
+    width: 100%;
+    padding: 4px;
+}
+
 .container {
     width: 100%;
     display: flex;
@@ -91,6 +98,10 @@ body {
 
     .articleCard {
         width: 70%;
+    }
+
+    .toggleContainer {
+        width: 80%;
     }
 }
 

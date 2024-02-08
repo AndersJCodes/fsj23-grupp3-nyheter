@@ -1,8 +1,10 @@
 
-const modal = document.querySelector('#modals');
+
 
 
 const authModal = () =>{
+
+    const modal = document.querySelector('#modals');
     //Modal
     //Sign In
     if(!document.querySelector("#signInModal") && !document.querySelector("#joinModal"))
@@ -43,12 +45,8 @@ const authModal = () =>{
                 </div>
             </div>
         </div>    
-    `
-        
+    `   
     }
-    
-    // constjoinBtn = document.querySelector("#registerBtn");
-    // joinBtn.addEventListener("click",userJoin); 
 }
 
 const signInForm = () => {
@@ -65,7 +63,7 @@ const signInForm = () => {
         <div class="mb-3 form-check">
             <a href="#" type="button" data-bs-toggle="modal" data-bs-target="#joinModal">Register new user</a>
         </div>
-        <button type="submit" class="btn btn-success" id="signInBtn">Sign in</button>
+        <button type="submit" class="btn btn-success" id="signInBtn" data-bs-dismiss="modal" >Sign in</button>
     </form>
     `)
 }
@@ -82,7 +80,7 @@ const joinForm = () =>{
             <label for="inputPassword" class="form-label">Password</label>
             <input type="password" class="form-control" id="joinPassword"> 
         </div>
-        <button type="submit" class="btn btn-success" id="registerBtn">Register</button>
+        <button type="submit" class="btn btn-success" id="registerBtn" data-bs-dismiss="modal" >Register</button>
     </form>
     `)
 }
