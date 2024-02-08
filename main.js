@@ -4,8 +4,8 @@ import axios from "axios";
 //import { searchOnWord } from "./search.js";
 import { setupCategoryEventListeners } from "./category";
 import { listenForFavorites } from "./favorites";
-//import authModal from "./signIn-join";
-//import { join } from "./auth";
+import authModal from "./signIn-join";
+import {registerNewUser,signInUser,signOutUser} from "./auth";
 
 const newsArr = [];
 const searchDefault = "javascript&css&html&react.js";
@@ -68,11 +68,13 @@ export function displayArticles(articles) {
 }
 
 listenForFavorites();
-//authModal();
-//document.querySelector("#join").addEventListener("click", function () {
-//  join();
-//});
-// signInModal();
+authModal();
+// document.querySelector("#join").addEventListener("click", function () {
+ 
+// });
+registerNewUser();
+signInUser();
+signOutUser();
 
 //setupCategoryEventListeners(getNews);
 //getNews(searchDefault);

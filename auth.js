@@ -14,44 +14,44 @@ signOut
 
 
 
-// sign in id:s
-const signInEmail = document.querySelector("#signIn");
-const signInPassword = document.querySelector("#signInPassword");
-const signInForm = document.querySelector("#signInForm");
-const signInBtn = document.querySelector("#signInBtn");
-
-// let count = 0;
-
-
-
-function join(){
-    // if(count<1)
-    // {
-    //     const joinEmail= document.querySelector("#joinEmail");
-    //     const joinPassword = document.querySelector("#joinPassword");
-    //     const joinForm = document.querySelector("#joinForm");   
-    //     const joinBtn = document.querySelector("#registerBtn");
-    
-        
-    //     joinBtn.addEventListener("click",userJoin(joinEmail,joinPassword)); 
-    //     count++
-    // }
-    
+function registerNewUser(){
     const joinBtn = document.querySelector("#registerBtn");
-
-    console.log("join function loaded");
     
     joinBtn.addEventListener("click",(e)=>{
         e.preventDefault();
         const joinEmail= document.querySelector("#joinEmail");
         const joinPassword = document.querySelector("#joinPassword");
-        const joinForm = document.querySelector("#joinForm");  
-        userJoin(joinEmail,joinPassword)
+
+        registerUserToFirebase(joinEmail,joinPassword)
         console.log("email: "+ joinEmail.value);
         console.log("password: "+ joinPassword.value);
     }); 
         
- 
+}
+
+function signInUser(){
+    const signInBtn = document.querySelector("#signInBtn");
+    
+    signInBtn.addEventListener("click",(e)=>{
+        e.preventDefault();
+        const signInEmail = document.querySelector("#signInEmail");
+        const signInPassword = document.querySelector("#signInPassword");
+
+        authenticatUserInFirebase(signInEmail,signInPassword);
+        console.log("email: "+ signInEmail.value);
+        console.log("password: "+ signInPassword.value);
+    }); 
+        
+}
+
+function signOutUser(){
+    const signOutBtn = document.querySelector("#signOutBtn");
+    
+    signOutBtn.addEventListener("click",(e)=>{
+        e.preventDefault();
+        logoutUser();
+    }); 
+        
 }
 
 // auth content
@@ -63,9 +63,13 @@ function join(){
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
-const userJoin = async(joinEmail,joinPassword) =>
+const signInBtn = document.querySelector('#signInModalBtn');
+const joinBtn = document.querySelector('#joinModalBtn');
+const signOutBtn = document.querySelector('#signOutBtn');
+
+const registerUserToFirebase = async(joinEmail,joinPassword) =>
 {
-    console.log("inside userJoin");
+    console.log("inside registerUserToFirebase");
     const userEmail = joinEmail.value;
     const userPassword = joinPassword.value;
 
@@ -82,6 +86,45 @@ const userJoin = async(joinEmail,joinPassword) =>
     });
 }
 
+const authenticatUserInFirebase = async(signInEmail,signInPassword) =>
+{
+    const userEmail = signInEmail.value;
+    const userPassword = signInPassword.value;
+    signInWithEmailAndPassword(auth,userEmail,userPassword)
+    .then((userCredential)=>{
+        const user = userCredential.user;
+        console.log(user);
+        alert("User logged in: ", user.email);
+
+        signInBtn.classList.add("d-none");
+        joinBtn.classList.add("d-none");
+        signOutBtn.classList.remove("d-none");
+    })
+    .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorCode + errorMessage)
+    });
+
+}
+
+const logoutUser = ()=>
+{   
+    
+
+    signOut(auth)
+    .then(()=>
+    {
+        alert('you signed out')
+        signInBtn.classList.remove("d-none");
+        joinBtn.classList.remove("d-none");
+        signOutBtn.classList.add("d-none");
+    })
+    .catch((err)=>{
+        console.log(err.message)
+    })
+}
 
 
-export {join,userJoin}
+
+export {registerNewUser,signInUser,signOutUser}

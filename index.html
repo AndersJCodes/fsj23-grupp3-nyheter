@@ -52,12 +52,15 @@
               </ul>
             </li>
           </ul>
-          <ul class="navbar-nav mx-lg-3 my-2 my-lg-0">
-            <li class="nav-item mx-lg-1 my-1 my-lg-0">
+          <ul class="navbar-nav mx-lg-3 my-2 my-lg-0" id="authBtns">
+            <li class="nav-item mx-lg-1 my-1 my-lg-0" id="signInModalBtn">
               <a class="btn btn-success text-nowrap" type="button" data-bs-toggle="modal" data-bs-target="#signInModal">Sign in</a>
             </li>
-            <li class="nav-item">
-              <a  href="#" class="btn btn-outline-secondary" type="button" data-bs-toggle="modal" data-bs-target="#joinModal" id="join">Join</a>
+            <li class="nav-item" id="joinModalBtn">
+              <a  href="#" class="btn btn-outline-secondary" type="button" data-bs-toggle="modal" data-bs-target="#joinModal" >Join</a>
+            </li>
+            <li class="nav-item mx-lg-1 my-1 my-lg-0 d-none" id="signOutBtn">
+              <a class="btn btn-success text-nowrap" type="button" >Sign out</a>
             </li>
             <form class="d-flex mx-lg-3 my-3 my-lg-0" role="search">
               <input class="form-control me-2" id="search-input" type="search" placeholder="Search" aria-label="Search">
