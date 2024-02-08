@@ -80,7 +80,7 @@ const joinForm = () =>{
             <label for="inputPassword" class="form-label">Password</label>
             <input type="password" class="form-control" id="joinPassword"> 
         </div>
-        <button type="submit" class="btn btn-success" id="registerBtn" data-bs-dismiss="modal" >Register</button>
+        <button type="submit" class="btn btn-success" id="registerBtn" >Register</button>
     </form>
     `)
 }
