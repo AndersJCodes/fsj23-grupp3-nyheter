@@ -1,13 +1,13 @@
 import { key } from "./configApi";
 import "./style.css";
 import axios from "axios";
-//import { searchOnWord } from "./search.js";
+import { search } from "./search.js";
 import { setupCategoryEventListeners } from "./category";
 import { listenForFavorites } from "./favorites";
 //import authModal from "./signIn-join";
 //import { join } from "./auth";
 
-const newsArr = [];
+export const newsArr = [];
 const searchDefault = "javascript&css&html&react.js";
 const articleElement = document.querySelector("#article");
 const domains = "";
@@ -24,7 +24,7 @@ async function getNews() {
     //console.log(response.data.articles);
     newsArr.push(...response.data.articles);
     newsArr.sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt)); // Sort by date in descending order
-    console.log(newsArr);
+    //console.log(newsArr);
     displayArticles(newsArr);
   } catch (error) {
     console.error(error);
@@ -50,6 +50,8 @@ export function displayArticles(articles) {
         <div class="cardBody">
           <h5 class="cardTitle">${article.title}</h5>
           <p class="cardText">${article.description}</p>
+          <a href="${article.url
+        }" class="btn btn-primary">Read the full article</a>
         <span>Source: ${article.author !== null ? article.author : "Unkown"
         }</span><br><span>Published at ${article.publishedAt}</span>
         </div>
@@ -81,7 +83,7 @@ function newsOrder() {
 
 
 
-document.getElementById('flexSwitchCheckChecked').addEventListener('click', newsOrder);
+
 
 listenForFavorites();
 //authModal();
@@ -93,13 +95,11 @@ listenForFavorites();
 //setupCategoryEventListeners(getNews);
 //getNews(searchDefault);
 
+//Search on word
 const searchWordButton = document.querySelector("#search-word-button");
 let searchInputField = document.querySelector("#search-input");
 
-searchWordButton.addEventListener("click", (e) => {
-  e.preventDefault();
-  searchOnWord(searchInputField);
-  searchInputField.value = "";
+searchWordButton.addEventListener("click", () => {
+  const searchedWord = searchInputField.value;
+  search(searchedWord);
 });
-/*
-export { getNews };*/
