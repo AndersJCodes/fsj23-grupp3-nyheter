@@ -1,9 +1,8 @@
 import { key } from "./configApi";
 import "./style.css";
 import axios from "axios";
-//import { search } from "./search.js";
+import { search } from "./search.js";
 import { setupCategoryEventListeners } from "./category";
-//import { listenForFavorites } from "./favorites";
 import authModal from "./signIn-join-modals.ts";
 import authentication from "./auth";
 
@@ -12,10 +11,6 @@ const searchDefault = "javascript&css&html&react.js";
 const articleElement = document.querySelector("#article");
 const domains = "";
 const excludeDomains = "dpreview.com";
-//const CSS = "CSS";
-//const HTML = "HTML";
-//const React = "react.js";
-//const btnLoadNews = document.querySelector("#load--news");
 async function getNews() {
   try {
     const url = `https://newsapi.org/v2/everything?language=en&q=${searchDefault}&excludeDomains=${excludeDomains}&apiKey=${key.API_KEY_1}`;
@@ -41,20 +36,17 @@ export function displayArticles(articles) {
       (article) => `
     <div class="articleCard"> 
     <div class="cardHeader">Category
-      <div><i class="favoriteBtn fa-regular fa-star fa-lg" data-url=${
-        article.url
-      } style="color: #14A44D;"></i></div>
+      <div><i class="favoriteBtn fa-regular fa-star fa-lg" data-url=${article.url
+        } style="color: #14A44D;"></i></div>
     </div>
     <div class="cardBody" data-url=${article.url}>
-       ${
-         article.urlToImage
-           ? `<img src="${article.urlToImage}" class="card-img-top" alt="..." />`
-           : ""
-       }
+       ${article.urlToImage
+          ? `<img src="${article.urlToImage}" class="card-img-top" alt="..." />`
+          : ""
+        }
           <h5 class="cardTitle">${article.title}</h5>
           <p class="cardText">${article.description}</p>
-        <span>Source: ${
-          article.author !== null ? article.author : "Unkown"
+        <span>Source: ${article.author !== null ? article.author : "Unkown"
         }</span><br><span>Published at ${article.publishedAt}</span>
         </div>
       </div>
@@ -86,12 +78,8 @@ function sortLatest() {
 document.getElementById("Latest").addEventListener("click", sortLatest);
 document.getElementById("Oldest").addEventListener("click", sortOldest);
 
-//listenForFavorites();
 authModal();
 authentication();
-// document.querySelector("#join").addEventListener("click", function () {
-
-// });
 
 setupCategoryEventListeners(getNews);
 //getNews(searchDefault);
