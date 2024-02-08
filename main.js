@@ -4,8 +4,8 @@ import axios from "axios";
 import { search } from "./search.js";
 import { setupCategoryEventListeners } from "./category";
 import { listenForFavorites } from "./favorites";
-//import authModal from "./signIn-join";
-//import { join } from "./auth";
+import authModal from "./signIn-join";
+import authentication from "./auth";
 
 export const newsArr = [];
 const searchDefault = "javascript&css&html&react.js";
@@ -86,11 +86,12 @@ document
 
 
 listenForFavorites();
-//authModal();
-//document.querySelector("#join").addEventListener("click", function () {
-//  join();
-//});
-// signInModal();
+authModal();
+authentication();
+// document.querySelector("#join").addEventListener("click", function () {
+ 
+// });
+
 
 //setupCategoryEventListeners(getNews);
 //getNews(searchDefault);
