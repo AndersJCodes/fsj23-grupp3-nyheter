@@ -4,7 +4,7 @@ import axios from "axios";
 //import { search } from "./search.js";
 import { setupCategoryEventListeners } from "./category";
 //import { listenForFavorites } from "./favorites";
-import authModal from "./signIn-join-modals.js";
+import authModal from "./signIn-join-modals.ts";
 import authentication from "./auth";
 
 export const newsArr = [];
