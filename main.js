@@ -4,7 +4,7 @@ import axios from "axios";
 //import { search } from "./search.js";
 import { setupCategoryEventListeners } from "./category";
 //import { listenForFavorites } from "./favorites";
-import authModal from "./signIn-join-modals.js";
+import authModal from "./signIn-join-modals.ts";
 import authentication from "./auth";
 
 export const newsArr = [];
@@ -19,7 +19,7 @@ const excludeDomains = "dpreview.com";
 
 async function getNews() {
   try {
-    const url = `https://newsapi.org/v2/everything?language=en&q=${searchDefault}&excludeDomains=${excludeDomains}&apiKey=${key.API_KEY_3}`;
+    const url = `https://newsapi.org/v2/everything?language=en&q=${searchDefault}&excludeDomains=${excludeDomains}&apiKey=${key.API_KEY_1}`;
     const response = await axios.get(url);
     //console.log(response.data.articles);
     newsArr.push(...response.data.articles);
@@ -31,6 +31,7 @@ async function getNews() {
   }
 }
 
+setupCategoryEventListeners();
 getNews();
 
 //Functioin that renders articles from the fetch
@@ -73,17 +74,18 @@ export function displayArticles(articles) {
   });
 }
 
-let sortToggle = true;
-
-function newsOrder() {
-  newsArr.reverse();
-  sortToggle = !sortToggle;
+function sortOldest() {
+  newsArr.sort((a, b) => new Date(a.publishedAt) - new Date(b.publishedAt));
   displayArticles(newsArr);
 }
 
-document
-  .getElementById("flexSwitchCheckChecked")
-  .addEventListener("click", newsOrder);
+function sortLatest() {
+  newsArr.sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt));
+  displayArticles(newsArr);
+}
+
+document.getElementById("Latest").addEventListener("click", sortLatest);
+document.getElementById("Oldest").addEventListener("click", sortOldest);
 
 //listenForFavorites();
 authModal();
