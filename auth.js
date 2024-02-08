@@ -127,7 +127,6 @@ onAuthStateChanged(auth,(user)=>{
         signInBtn.classList.add("d-none");
         joinBtn.classList.add("d-none");
         signOutBtn.classList.remove("d-none");
-        alert('Welcome '+ user.email)
     }
 })
 
