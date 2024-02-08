@@ -31,6 +31,7 @@ async function getNews() {
   }
 }
 
+setupCategoryEventListeners()
 getNews();
 
 //Functioin that renders articles from the fetch
