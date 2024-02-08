@@ -41,7 +41,9 @@ export function displayArticles(articles) {
       (article) => `
     <div class="articleCard"> 
     <div class="cardHeader">Category
-      <div><i class="favoriteBtn fa-regular fa-star fa-lg" style="color: #14A44D;"></i></div>
+      <div><i class="favoriteBtn fa-regular fa-star fa-lg" data-url=${
+        article.url
+      } style="color: #14A44D;"></i></div>
     </div>
     <div class="cardBody" data-url=${article.url}>
        ${

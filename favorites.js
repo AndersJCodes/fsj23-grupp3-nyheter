@@ -18,6 +18,8 @@ function listenForFavorites() {
 
       favoriteUrl = event.target.dataset.url;
       console.log(favoriteUrl);
+
+      const updateFavorite = favoriteItems.filter(favoriteUrl);
       //if (favoriteUrl === newsArr.)
     }
 
