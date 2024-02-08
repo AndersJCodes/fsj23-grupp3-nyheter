@@ -39,15 +39,15 @@ export function displayArticles(articles) {
     .filter((article) => article.description)
     .map(
       (article) => `
-    <div class="articleCard" data-url=${article.url}> 
+    <div class="articleCard"> 
     <div class="cardHeader">Category
       <div><i class="favoriteBtn fa-regular fa-star fa-lg" style="color: #14A44D;"></i></div>
     </div>
+    <div class="cardBody" data-url=${article.url}>
        ${article.urlToImage
           ? `<img src="${article.urlToImage}" class="card-img-top" alt="..." />`
           : ""
         }
-        <div class="cardBody">
           <h5 class="cardTitle">${article.title}</h5>
           <p class="cardText">${article.description}</p>
         <span>Source: ${article.author !== null ? article.author : "Unkown"
@@ -61,7 +61,7 @@ export function displayArticles(articles) {
 
   articleElement.innerHTML = html;
 
-  document.querySelectorAll('.articleCard').forEach(card => {
+  document.querySelectorAll('.cardBody').forEach(card => {
     card.addEventListener
       ('click', function () {
         const articleUrl = this.getAttribute('data-url');
