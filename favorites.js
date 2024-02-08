@@ -1,8 +1,11 @@
 //Listen to the generated buttons
 
-const favoriteItems = [];
+import { newsArr } from "./main";
 
-export function listenForFavorites() {
+const favoriteItems = [];
+let favoriteUrl = "";
+
+function listenForFavorites() {
   //Adding the event listener
   document.addEventListener("click", function (event) {
     // Check if the clicked element has the class "favorite", required to make js see dom loaded items
@@ -11,7 +14,11 @@ export function listenForFavorites() {
       event.target.classList.toggle("fa-regular");
       event.target.classList.toggle("fa-solid");
       console.log("Favorite button clicked.");
-      console.log(event.target);
+      //console.log(event.target);
+
+      favoriteUrl = event.target.dataset.url;
+      console.log(favoriteUrl);
+      //if (favoriteUrl === newsArr.)
     }
 
     //Add or remove from favorites depending on if the clicked item is in the new array
@@ -19,6 +26,7 @@ export function listenForFavorites() {
   });
 }
 
+listenForFavorites();
 //add to favorites list
 
 //Listen to favorties button

@@ -1,9 +1,9 @@
 import { key } from "./configApi";
 import "./style.css";
 import axios from "axios";
-import { search } from "./search.js";
+//import { search } from "./search.js";
 import { setupCategoryEventListeners } from "./category";
-import { listenForFavorites } from "./favorites";
+//import { listenForFavorites } from "./favorites";
 import authModal from "./signIn-join";
 import authentication from "./auth";
 
@@ -44,13 +44,15 @@ export function displayArticles(articles) {
       <div><i class="favoriteBtn fa-regular fa-star fa-lg" style="color: #14A44D;"></i></div>
     </div>
     <div class="cardBody" data-url=${article.url}>
-       ${article.urlToImage
-          ? `<img src="${article.urlToImage}" class="card-img-top" alt="..." />`
-          : ""
-        }
+       ${
+         article.urlToImage
+           ? `<img src="${article.urlToImage}" class="card-img-top" alt="..." />`
+           : ""
+       }
           <h5 class="cardTitle">${article.title}</h5>
           <p class="cardText">${article.description}</p>
-        <span>Source: ${article.author !== null ? article.author : "Unkown"
+        <span>Source: ${
+          article.author !== null ? article.author : "Unkown"
         }</span><br><span>Published at ${article.publishedAt}</span>
         </div>
       </div>
@@ -61,13 +63,11 @@ export function displayArticles(articles) {
 
   articleElement.innerHTML = html;
 
-  document.querySelectorAll('.cardBody').forEach(card => {
-    card.addEventListener
-      ('click', function () {
-        const articleUrl = this.getAttribute('data-url');
-        window.open(articleUrl, '_blank');
-
-      });
+  document.querySelectorAll(".cardBody").forEach((card) => {
+    card.addEventListener("click", function () {
+      const articleUrl = this.getAttribute("data-url");
+      window.open(articleUrl, "_blank");
+    });
   });
 }
 
@@ -83,15 +83,12 @@ document
   .getElementById("flexSwitchCheckChecked")
   .addEventListener("click", newsOrder);
 
-
-
-listenForFavorites();
+//listenForFavorites();
 authModal();
 authentication();
 // document.querySelector("#join").addEventListener("click", function () {
- 
-// });
 
+// });
 
 setupCategoryEventListeners(getNews);
 //getNews(searchDefault);
