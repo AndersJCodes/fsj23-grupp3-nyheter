@@ -23,8 +23,7 @@ function registerNewUser(){
         const joinPassword = document.querySelector("#joinPassword");
 
         registerUserToFirebase(joinEmail,joinPassword)
-        console.log("email: "+ joinEmail.value);
-        console.log("password: "+ joinPassword.value);
+
     }); 
         
 }
@@ -38,8 +37,6 @@ function signInUser(){
         const signInPassword = document.querySelector("#signInPassword");
 
         authenticatUserInFirebase(signInEmail,signInPassword);
-        console.log("email: "+ signInEmail.value);
-        console.log("password: "+ signInPassword.value);
     }); 
         
 }
@@ -65,7 +62,6 @@ const auth = getAuth(app);
 
 const registerUserToFirebase = async(joinEmail,joinPassword) =>
 {
-    console.log("inside registerUserToFirebase");
     const userEmail = joinEmail.value;
     const userPassword = joinPassword.value;
 
@@ -91,7 +87,7 @@ const authenticatUserInFirebase = async(signInEmail,signInPassword) =>
     .catch((error) => {
 
         validation('signInForm',error.message);
-        console.log(errorCode + errorMessage)
+        console.log(errorCode + errorMessage);
     });
 
 }
@@ -120,10 +116,10 @@ onAuthStateChanged(auth,(user)=>{
         signInBtn.classList.remove("d-none");
         joinBtn.classList.remove("d-none");
         signOutBtn.classList.add("d-none");
+        
     }
     if(user!==null)
     {
-        console.log('authChange: '+ user)
         signInBtn.classList.add("d-none");
         joinBtn.classList.add("d-none");
         signOutBtn.classList.remove("d-none");
