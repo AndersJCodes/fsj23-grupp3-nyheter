@@ -65,6 +65,10 @@ body {
 
 }
 
+.card-img-top {
+    max-height: 25rem;
+}
+
 .marked {
     align-self: flex-end;
 }

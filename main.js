@@ -16,7 +16,6 @@ const excludeDomains = "dpreview.com";
 //const HTML = "HTML";
 //const React = "react.js";
 //const btnLoadNews = document.querySelector("#load--news");
-
 async function getNews() {
   try {
     const url = `https://newsapi.org/v2/everything?language=en&q=${searchDefault}&excludeDomains=${excludeDomains}&apiKey=${key.API_KEY_1}`;
