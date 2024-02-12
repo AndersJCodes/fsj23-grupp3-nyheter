@@ -1,6 +1,8 @@
 //Listen to the generated buttons
 //debugger;
-import { newsArr } from "./main";
+import { newsArr, displayArticles } from "./main";
+const savedNewsButton = document.querySelector("#save");
+const displaySavedNews = document.querySelector(".display-saved-news");
 
 export const favoriteItems = [];
 let favoriteUrl = "";
@@ -55,7 +57,8 @@ function saveFavorite() {
 function loadFavorite() {
   const favoriteJSON = localStorage.getItem("Favorites");
   if (favoriteJSON == null) return [];
-  return JSON.parse(favoriteJSON);
+  displayArticles(JSON.parse(favoriteJSON));
+  displaySavedNews.style.display = "block";
 }
 
 export function populateFromFavorites() {
@@ -66,3 +69,5 @@ export function populateFromFavorites() {
 //add to favorites list
 
 //Listen to favorties button
+
+savedNewsButton.addEventListener("click", loadFavorite);

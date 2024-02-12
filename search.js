@@ -1,4 +1,5 @@
 import { displayArticles, newsArr } from "./main.js";
+const displaySavedNews = document.querySelector(".display-saved-news");
 
 //Search on word
 //Convert to lower cases and check if search word is contained.
@@ -34,4 +35,5 @@ export const search = (searchInputField) => {
   );
   //console.log(filteredArticles);
   displayArticles(filteredArticles);
+  displaySavedNews.style.display = "none";
 };

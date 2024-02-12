@@ -44,7 +44,7 @@ export function displayArticles(articles) {
       console.log(isFavorite);
       return `
         <div class="articleCard"> 
-          <div class="cardHeader">Category
+          <div class="cardHeader">
             <div><i class="favoriteBtn fa-lg fa-star ${
               isFavorite ? "fa-solid" : "fa-regular"
             }" data-url="${article.url}" style="color: #14A44D"
@@ -102,3 +102,27 @@ searchWordButton.addEventListener("click", () => {
   const searchedWord = searchInputField.value;
   search(searchedWord);
 });
+
+function formatDate(publishedAt) {
+  const currentDate = new Date();
+  const yesterdayDate = new Date();
+  yesterdayDate.setDate(currentDate.getDate() - 1);
+  const publishedDate = new Date(publishedAt);
+  const isToday = publishedDate.toDateString() === currentDate.toDateString();
+  const isYesterday =
+    publishedDate.toDateString() === yesterdayDate.toDateString();
+  const monthName = publishedDate.toLocaleString("default", { month: "long" });
+  if (isToday) {
+    return `Today ${publishedDate.getHours()}:${publishedDate
+      .getMinutes()
+      .toString()
+      .padStart(2, "0")}`;
+  } else if (isYesterday) {
+    return `Yesterday ${publishedDate.getHours()}:${publishedDate
+      .getMinutes()
+      .toString()
+      .padStart(2, "0")}`;
+  } else {
+    return ` ${publishedDate.getDate()} ${monthName}`;
+  }
+}
