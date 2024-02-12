@@ -61,7 +61,7 @@ export function displayArticles(articles) {
             <span>Source: ${
               article.author !== null ? article.author : "Unknown"
             }</span><br>
-            <span>Published at ${article.publishedAt}</span>
+            <span>Published ${formatDate(article.publishedAt)}</span>
           </div>
         </div>
       `;
