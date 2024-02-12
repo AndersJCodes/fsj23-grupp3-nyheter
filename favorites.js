@@ -2,51 +2,50 @@
 //debugger;
 import { newsArr } from "./main";
 
-const favoriteItems = [];
+export const favoriteItems = [];
 let favoriteUrl = "";
 
-function listenForFavorites() {
-  //Adding the event listener
-  document.addEventListener("click", function (event) {
-    // Check if the clicked element has the class "favorite", required to make js see dom loaded items
-    if (event.target.classList.contains("favoriteBtn")) {
-      // Toggle the favorite state variable
-      event.target.classList.toggle("fa-regular");
-      event.target.classList.toggle("fa-solid");
-      //console.log("Favorite button clicked.");
+favoriteItems.push(...populateFromFavorites()); //This lines populates favorites once the reload happens. favoriteItems is needed as it acts as a check against the handleFavoriteClick function below
 
-      favoriteUrl = event.target.dataset.url;
-      //console.log(favoriteUrl);
+document.addEventListener("click", function (event) {
+  if (event.target.classList.contains("favoriteBtn")) {
+    handleFavoriteClick(event.target);
+  }
+});
 
-      const updateFavorite = newsArr.filter((item) => item.url === favoriteUrl);
-      console.log(updateFavorite);
+function handleFavoriteClick(target) {
+  // Check if the clicked element has the class "favoriteBtn"
+  if (!target.classList.contains("favoriteBtn")) {
+    return; // Exit the function if the clicked element is not a favorite button
+  }
 
-      // Check if the updated favorite is already in favoriteItems
-      const isFavoritePresent = favoriteItems.some(
-        (item) => item.url === updateFavorite[0].url
-      );
-      if (!isFavoritePresent) {
-        // Add the updated favorite to favoriteItems
-        favoriteItems.unshift(updateFavorite[0]);
-        console.log("Updated favorite added to favoriteItems:", favoriteItems);
-        saveFavorite();
-      } else {
-        console.log(
-          "Updated favorite is already in favoriteItems. Removing..."
-        );
-        // Remove the updated favorite from favoriteItems
-        favoriteItems.splice(
-          favoriteItems.findIndex((item) => item.url === updateFavorite[0].url),
-          1
-        );
-        saveFavorite();
-        console.log(
-          "Updated favorite removed from favoriteItems:",
-          favoriteItems
-        );
-      }
-    }
-  });
+  const favoriteUrl = target.dataset.url;
+
+  // Find the article corresponding to the clicked favorite button
+  const updateFavorite = newsArr.find((item) => item.url === favoriteUrl);
+
+  // Check if the clicked article is already in favoriteItems
+  const indexInFavorites = favoriteItems.findIndex(
+    (item) => item.url === favoriteUrl
+  );
+
+  if (indexInFavorites === -1) {
+    // Article is not in favorites, so add it
+    favoriteItems.push(updateFavorite);
+    console.log("Article added to favorites:", updateFavorite);
+  } else {
+    // Article is already in favorites, so remove it
+    favoriteItems.splice(indexInFavorites, 1);
+    console.log("Article removed from favorites:", updateFavorite);
+  }
+
+  // Save the updated favorite list
+  saveFavorite();
+
+  // Toggle the favorite button icon classes after saving the changes
+  target.classList.toggle("fa-solid");
+  target.classList.toggle("fa-regular");
+  console.log("Favorite button toggled");
 }
 
 function saveFavorite() {
@@ -59,7 +58,11 @@ function loadFavorite() {
   return JSON.parse(favoriteJSON);
 }
 
-listenForFavorites();
+export function populateFromFavorites() {
+  const favoriteJSON = localStorage.getItem("Favorites");
+  if (favoriteJSON == null) return [];
+  return JSON.parse(favoriteJSON);
+}
 //add to favorites list
 
 //Listen to favorties button
