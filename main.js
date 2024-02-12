@@ -34,24 +34,24 @@ export function displayArticles(articles) {
     .filter((article) => article.description)
     .map(
       (article) => `
-    <div class="articleCard"> 
-    <div class="cardHeader">Category
-      <div><i class="favoriteBtn fa-regular fa-star fa-lg" data-url=${article.url
+      <div class="articleCard"> 
+      <div class="cardHeader">
+        <div><i class="favoriteBtn fa-regular fa-star fa-lg" data-url=${article.url
         } style="color: #14A44D;"></i></div>
-    </div>
-    <div class="cardBody" data-url=${article.url}>
-       ${article.urlToImage
+      </div>
+      <div class="cardBody" data-url=${article.url}>
+        ${article.urlToImage
           ? `<img src="${article.urlToImage}" class="card-img-top" alt="..." />`
           : ""
         }
-          <h5 class="cardTitle">${article.title}</h5>
-          <p class="cardText">${article.description}</p>
-        <span>Source: ${article.author !== null ? article.author : "Unkown"
-        }</span><br><span>Published at ${article.publishedAt}</span>
+            <h5 class="cardTitle">${article.title}</h5>
+            <p class="cardText">${article.description}</p>
+          <span>Source: ${article.author !== null ? article.author : "Unkown"
+        }</span><br> <span>Published ${formatDate(article.publishedAt)}</span>
+          </div>
         </div>
       </div>
-    </div>
-  `
+    `
     )
     .join("");
 
@@ -63,7 +63,7 @@ export function displayArticles(articles) {
       window.open(articleUrl, "_blank");
     });
   });
-}
+};
 
 function sortOldest() {
   newsArr.sort((a, b) => new Date(a.publishedAt) - new Date(b.publishedAt));
@@ -92,3 +92,20 @@ searchWordButton.addEventListener("click", () => {
   const searchedWord = searchInputField.value;
   search(searchedWord);
 });
+
+function formatDate(publishedAt) {
+  const currentDate = new Date();
+  const yesterdayDate = new Date();
+  yesterdayDate.setDate(currentDate.getDate() - 1);
+  const publishedDate = new Date(publishedAt);
+  const isToday = publishedDate.toDateString() === currentDate.toDateString();
+  const isYesterday = publishedDate.toDateString() === yesterdayDate.toDateString();
+  const monthName = publishedDate.toLocaleString('default', { month: 'long' });
+  if (isToday) {
+    return `Today ${publishedDate.getHours()}:${publishedDate.getMinutes().toString().padStart(2, '0')}`;
+  } else if (isYesterday) {
+    return `Yesterday ${publishedDate.getHours()}:${publishedDate.getMinutes().toString().padStart(2, '0')}`;
+  } else {
+    return ` ${publishedDate.getDate()} ${monthName}`;
+  }
+}
