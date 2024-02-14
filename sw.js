@@ -2,12 +2,9 @@ const CACHE_NAME = "my-cache-v1";
 const urlsToCache = [
   "/",
   "index.html",
-  "styles/main.css",
-  "scripts/main.js",
+  "style.css",
+  "main.js",
   "app.js",
-  "https://kit.fontawesome.com/06a427721a.js",
-  "https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js",
-  "https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css",
   "favorite-false.png",
   "favorite-true.png",
 ];
@@ -35,15 +32,33 @@ self.addEventListener("activate", (e) => {
 });
 
 // fetch event
-self.addEventListener("fetch", function (event) {
-  //console.log("fetch event", event);
+/* self.addEventListener("fetch", function (event) {
   event.respondWith(
     caches.match(event.request).then(function (response) {
-      //console.log(response);
       if (response) {
         return response;
       }
       return fetch(event.request);
+    })
+  );
+}); */
+
+self.addEventListener("fetch", (event) => {
+  event.respondWith(
+    caches.match(event.request).then((response) => {
+      if (response) {
+        return response;
+      }
+      // Om resursen inte finns i cachen, hämta den från nätverket och cacha den
+      return fetch(event.request).then((networkResponse) => {
+        const clonedResponse = networkResponse.clone();
+
+        caches.open(CACHE_NAME).then((cache) => {
+          cache.put(event.request, clonedResponse);
+        });
+
+        return networkResponse;
+      });
     })
   );
 });
