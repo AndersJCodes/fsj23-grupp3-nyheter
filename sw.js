@@ -1,5 +1,4 @@
 const CACHE_NAME = "my-cache-v1";
-const dynamicCache = "site-dymanic-v1";
 const urlsToCache = [
   "/",
   "index.html",
@@ -44,12 +43,7 @@ self.addEventListener("fetch", function (event) {
       if (response) {
         return response;
       }
-      return fetch(event.request).then(function (response) {
-        return caches.open(dynamicCache).then(function (caches) {
-          caches.put(event.request.url, response.clone());
-          return response;
-        });
-      });
+      return fetch(event.request);
     })
   );
 });

@@ -16,7 +16,7 @@ let newsFetched = false;
 
 async function getNews() {
   try {
-    const url = `https://newsapi.org/v2/everything?language=en&q=${searchDefault}&excludeDomains=${excludeDomains}&apiKey=${key.API_KEY_1}`;
+    const url = `https://newsapi.org/v2/everything?language=en&q=${searchDefault}&excludeDomains=${excludeDomains}&apiKey=${key.API_KEY_2}`;
     const response = await axios.get(url);
     //console.log(response.data.articles);
     newsArr.push(...response.data.articles);
