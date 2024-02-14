@@ -50,6 +50,10 @@ body {
     font-size: 1.7rem;
     font-weight: 800;
 }
+.cardTitle:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
 
 .cardText {
     font-size: 1.1rem;

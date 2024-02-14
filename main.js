@@ -16,7 +16,7 @@ let newsFetched = false;
 
 async function getNews() {
   try {
-    const url = `https://newsapi.org/v2/everything?language=en&q=${searchDefault}&excludeDomains=${excludeDomains}&apiKey=${key.API_KEY_3}`;
+    const url = `https://newsapi.org/v2/everything?language=en&q=${searchDefault}&excludeDomains=${excludeDomains}&apiKey=${key.API_KEY_1}`;
     const response = await axios.get(url);
     //console.log(response.data.articles);
     newsArr.push(...response.data.articles);
@@ -41,23 +41,28 @@ export function displayArticles(articles) {
     .filter((article) => article.description)
     .map((article) => {
       const isFavorite = favoriteItems.some((item) => item.url === article.url); // Check if the article is in favorites
-      console.log(isFavorite);
+      //console.log(isFavorite);
       return `
         <div class="articleCard"> 
           <div class="cardHeader">
-            <div><i class="favoriteBtn fa-lg fa-star ${isFavorite ? "fa-solid" : "fa-regular"
-        }" data-url="${article.url}" style="color: #14A44D"
+            <div><i class="favoriteBtn fa-lg fa-star ${
+              isFavorite ? "fa-solid" : "fa-regular"
+            }" data-url="${article.url}" style="color: #14A44D"
       };"></i></div>
           </div>
-          <div class="cardBody" data-url="${article.url}">
-             ${article.urlToImage
-          ? `<img src="${article.urlToImage}" class="card-img-top" alt="..." />`
-          : ""
-        }
-            <h5 class="cardTitle">${article.title}</h5>
+          <div class="cardBody">
+             ${
+               article.urlToImage
+                 ? `<img src="${article.urlToImage}" class="card-img-top" alt="..." />`
+                 : ""
+             }
+            <h5 class="cardTitle" data-url="${article.url}">${
+        article.title
+      }</h5>
             <p class="cardText">${article.description}</p>
-            <span>Source: ${article.author !== null ? article.author : "Unknown"
-        }</span><br>
+            <span>Source: ${
+              article.author !== null ? article.author : "Unknown"
+            }</span><br>
             <span>Published ${formatDate(article.publishedAt)}</span>
           </div>
         </div>
@@ -67,7 +72,7 @@ export function displayArticles(articles) {
 
   articleElement.innerHTML = html;
 
-  document.querySelectorAll(".cardBody").forEach((card) => {
+  document.querySelectorAll(".cardTitle").forEach((card) => {
     card.addEventListener("click", function () {
       const articleUrl = this.getAttribute("data-url");
       window.open(articleUrl, "_blank");
